@@ -1,5 +1,6 @@
 # PROMPT
 
+
 autoload -U colors && colors
 setopt PROMPT_SUBST
 
@@ -29,15 +30,5 @@ set_prompt() {
 }
 
 precmd_functions+=set_prompt
-
-preexec () {
-   (( ${#_elapsed[@]} > 1000 )) && _elapsed=(${_elapsed[@]: -1000})
-   _start=$SECONDS
-}
-
-precmd () {
-   (( _start >= 0 )) && _elapsed+=($(( SECONDS-_start )))
-   _start=-1 
-}
 
 alias ls='ls -G'
